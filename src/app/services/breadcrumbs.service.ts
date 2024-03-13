@@ -1,60 +1,48 @@
 import { Injectable } from '@angular/core';
-import { IBreadcrumb } from '../models/iBreadcrumb';
 import { ActivatedRoute } from '@angular/router';
+import { IBreadcrumb } from '../models/iBreadcrumb';
 
 @Injectable({
   providedIn: 'root'
 })
-/**
- * Service for building breadcrumbs according to the activated route.
- */
 export class BreadcrumbsService {
+  constructor() {}
 
-  constructor() { }
-
-  /**
-   * Recursively build breadcrumb according to activated route.
-   * @param route - The activated route.
-   * @param url - The current URL.
-   * @param breadcrumbs - The array of breadcrumbs.
-   * @returns The array of breadcrumbs.
-   */
   buildBreadCrumb(route: ActivatedRoute, url: string = '', breadcrumbs: IBreadcrumb[] = []): IBreadcrumb[] {
-    //If no routeConfig is avalailable we are on the root path
-    let label = route.routeConfig && route.routeConfig.data ? route.routeConfig.data['breadcrumb'] : '';
-    let path = route.routeConfig && route.routeConfig.data ? route.routeConfig.path : '';
+    if (route.routeConfig && route.routeConfig.path !== '') {
+      // Avoid adding a breadcrumb for the root path
+      const routePath = route.routeConfig.path;
+      // Handle dynamic routes
+      let path = routePath?.startsWith(':') ? route.snapshot.params[routePath.substring(1)] : routePath;
+      let fullPath = url + `/${path}`;
 
-    // If the route is dynamic route such as ':id', remove it
-    if (path) {
-      const lastRoutePart = path.split('/').pop();
-      if (lastRoutePart) {
-        const isDynamicRoute = lastRoutePart.startsWith(':');
-        if (isDynamicRoute && !!route.snapshot) {
-          const paramName = lastRoutePart.split(':')[1];
-          path = path.replace(lastRoutePart, route.snapshot.params[paramName]);
-          label = route.snapshot.params[paramName];
-        }
+      // Prevent duplicating breadcrumbs
+      if (!breadcrumbs.some(bc => bc.url === fullPath)) {
+        const breadcrumbLabel = route.snapshot.data['breadcrumb'] ? route.snapshot.data['breadcrumb'] : this.extractLabelFromUrl(fullPath);
+        breadcrumbs.push({ label: breadcrumbLabel, url: fullPath });
       }
     }
 
-    //In the routeConfig the complete path is not available,
-    //so we rebuild it each time
-    const nextUrl = path ? `${url}/${path}` : url;
-
-    const breadcrumb: IBreadcrumb = {
-      label: label,
-      url: nextUrl,
-    };
-    // Only adding route with non-empty label
-    const newBreadcrumbs = breadcrumb.label ? [...breadcrumbs, breadcrumb] : [...breadcrumbs];
     if (route.firstChild) {
-      //If we are not on our current path yet,
-      //there will be more children to look after, to build our breadcumb
-      return this.buildBreadCrumb(route.firstChild, nextUrl, newBreadcrumbs);
+      // Recursively add breadcrumbs for child routes
+      return this.buildBreadCrumb(route.firstChild, url + '/' + (route.routeConfig ? route.routeConfig.path : ''), breadcrumbs);
+    } else {
+      // Cleanup any duplicated slashes
+      breadcrumbs = breadcrumbs.map(bc => {
+        return { label: bc.label, url: bc.url.replace(/\/\/+/g, '/') };
+      });
+      return breadcrumbs;
     }
-    return newBreadcrumbs;
   }
 
+  private extractLabelFromUrl(url: string | undefined): string {
+    const parts = url?.split('/');
+    let lastPart = parts?.pop() || 'Home'; // Use the last part as the label or 'Home' as a fallback
+    // Capitalize the first letter of the last part and return
+    // remove hyphens and capitalize first letter of each word
+    lastPart = lastPart.replace(/-/g, ' '); // Remove hyphens
+    lastPart = lastPart.split(' ').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' '); // Capitalize the first letter of each word
+    return lastPart.charAt(0).toUpperCase() + lastPart.slice(1);
+  }
+  
 }
-
-

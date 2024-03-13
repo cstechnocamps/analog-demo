@@ -45,8 +45,6 @@ import { IBlogPost } from 'src/app/models/iBlogPost';
             </div>
           </div>
         </article>
-  
-        <!-- More posts... -->
       </div>
   `,
 })
