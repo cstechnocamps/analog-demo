@@ -182,7 +182,7 @@ p {
 
 [Tailwind CSS](https://tailwindcss.com/docs) is a utility-first CSS framework that provides low-level utility classes to build custom designs. Instead of pre-designed components, Tailwind allows you to construct your design directly in your markup.
 
-## Basic Usage
+### Basic Usage
 
 Tailwind CSS uses utility classes to style elements. These classes are added to your HTML elements in the class attribute.
 
@@ -202,7 +202,7 @@ Here's a basic example:
 
 In this example, `p-6` is a padding utility, `max-w-sm` sets the maximum width, `mx-auto` centers the element horizontally, `bg-white` sets the background color, and so on.
 
-## Commonly Used Utilities
+### Commonly Used Utilities
 
 Here are some commonly used utilities in Tailwind CSS:
 
@@ -325,7 +325,7 @@ export class AppComponent {
 
 In this example, `AppComponent` is a component that displays a title. The `@Component` decorator provides metadata about the component, including its selector (used to identify the component in a template) and its template (the HTML that defines the component's view).
 
-## Commonly Used Features
+### Commonly Used Features
 
 Here are some commonly used features in Angular:
 
