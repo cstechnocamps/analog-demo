@@ -21,4 +21,6 @@ The basics on this project and how it works
 ## Pre Rendering
 ## Building
 
+[PREV: Core Concepts](./docs/core-concepts)
 
+[NEXT: How to Use this Site](./docs/how-to-use-this-site)

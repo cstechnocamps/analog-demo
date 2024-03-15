@@ -21,4 +21,6 @@ What to change and how
 ### The layout
 ### The markdown
 
+[PREV: Analog Basics](./docs/analog-basics)
 
+[NEXT: Markdown Cheatsheet](./docs/markdown-cheatsheet)

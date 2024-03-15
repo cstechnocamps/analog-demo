@@ -6,7 +6,7 @@ mainImage: "https://images.unsplash.com/photo-1496128858413-b36217c2ce36?ixlib=r
 authorImage: "https://res.cloudinary.com/wehi-web-design-ltd/image/upload/v1698242293/carlosarli.com/photo/image0.jpg"
 authorName: "Carlo Sarli"
 authorRole: "Teaching Fellow - Technocamps"
-description: "Let's get this party started"
+description: "A guide on how to install all the required software to run this project"
 ---
 
 # Installing the required software

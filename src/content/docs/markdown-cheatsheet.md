@@ -173,3 +173,5 @@ Here's a sentence with a footnote. [^1]
 - [ ] Update the website
 - [ ] Contact the media
 
+
+[PREV: How to Use this Site](./docs/how-to-use-this-site)

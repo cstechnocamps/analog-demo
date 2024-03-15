@@ -22,8 +22,7 @@ export interface PostAttributes {
     </div>   
     </ng-container>
   `,
-  styles: `
-`
+  styles: ``
 })
 export default class DocsPostComponent {
   readonly post$ = injectContent<PostAttributes>({
