@@ -46,6 +46,9 @@ export default defineConfig(({ mode }) => ({
             },
           },
         ],
+      },
+      nitro: {
+        preset: 'netlify'
       }
     }
   )],
