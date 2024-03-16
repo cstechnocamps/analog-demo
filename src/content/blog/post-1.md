@@ -7,6 +7,7 @@ authorImage: "https://images.unsplash.com/photo-1519244703995-f4e0f30006d5?ixlib
 authorName: "Michael Foster"
 authorRole: "Co-Founder / CTO"
 description: "Learn how a minor change to your value proposition can significantly boost your conversion rates."
+draft: false
 ---
 
 # Boost Your Conversion Rate

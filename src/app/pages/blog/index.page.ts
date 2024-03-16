@@ -51,5 +51,6 @@ import { IBlogPost } from 'src/app/models/iBlogPost';
 export default class BlogListComponent {
   readonly posts = injectContentFiles<IBlogPost>((contentFile) =>
     contentFile.filename.includes('blog/')
+  ).filter((post) => !post.attributes.draft
   ).sort((a, b) => (a.attributes.date < b.attributes.date ? -1 : 1));
 }

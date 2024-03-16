@@ -40,9 +40,4 @@ export const routeMeta: RouteMeta = {
   ],
 })
 export default class HomeComponent {
-  count = 0;
-
-  increment() {
-    this.count++;
-  }
 }

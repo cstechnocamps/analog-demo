@@ -347,8 +347,155 @@ Remember to check out the [Angular documentation](https://angular.io/docs) for a
 This block of code can be copied and pasted into your Markdown file. It provides a brief introduction to Angular, including a link to the official documentation and examples of commonly used features.
 
 ## What are components
-## What are Static Site Generators 
-## What is Analog
+
+In Angular, components are the main way you build and specify elements and logic on the page. Through the use of selectors, components become the building blocks of your Angular application as they encapsulate the data, template, and logic that is needed on the page.
+
+## Basic Syntax
+
+A component in Angular is a class that is decorated with the `@Component` decorator. The `@Component` decorator allows you to specify the metadata for the component, such as the selector, template, and style URLs.
+
+Here's a basic example of an Angular component:
+
+```typescript
+import { Component } from '@angular/core';
+
+@Component({
+  selector: 'app-hello-world',
+  templateUrl: './hello-world.component.html',
+  styleUrls: ['./hello-world.component.css']
+})
+export class HelloWorldComponent {
+  title = 'Hello, Angular!';
+}
+```
+
+In this example, `HelloWorldComponent` is a component that displays a title. The `@Component` decorator provides metadata about the component, including its selector (used to identify the component in a template), templateUrl (the location of the component's template file), and styleUrls (the location of the component's styles).
+
+### Component Interaction
+
+Components can interact with each other in various ways, including:
+
+- **Input and Output**: Parent components can interact with their child components by sending inputs and listening for outputs. Inputs are set using square brackets `[]`, and outputs are listened to using parentheses `()`.
+
+- **Via Services**: Components can also interact with each other through services. A service is a class that can be shared across components, and it can be used to share data and functionality.
+
+- **Via Router**: Components can be linked to specific routes using the Angular Router, and parameters can be passed via the route to configure the component.
+
+## What are services
+
+In Angular, a service is a class with a specific purpose. Services are commonly used to share data and functionality across components. The main objective of a service is to organize and share business logic, models, or data and functions with different components of an enterprise application.
+
+### Basic Syntax
+
+A service in Angular is a class that is decorated with the `@Injectable` decorator. The `@Injectable` decorator tells Angular that this service might itself have injected dependencies.
+
+Here's a basic example of an Angular service:
+
+```typescript
+import { Injectable } from '@angular/core';
+
+@Injectable({
+  providedIn: 'root',
+})
+export class DataService {
+  data = 'Hello, Angular!';
+}
+```
+
+In this example, `DataService` is a service that provides a data string. The `@Injectable` decorator provides metadata about the service, including where it should be provided.
+
+### Using Services
+
+To use a service, you would typically inject it into a component using Angular's dependency injection system. Here's an example of a component using the `DataService`:
+
+```typescript
+import { Component } from '@angular/core';
+import { DataService } from './data.service';
+
+@Component({
+  selector: 'app-hello-world',
+  template: `<h1>{{title}}</h1>`,
+})
+export class HelloWorldComponent {
+  title: string;
+
+  constructor(private dataService: DataService) {
+    this.title = this.dataService.data;
+  }
+}
+```
+
+In this example, `DataService` is injected into `HelloWorldComponent` through the constructor. The component can then use the service to get the data it needs.
+
+Remember to check out the [Angular documentation](https://angular.io/guide/architecture-services) for a full overview of services and how to use them.
+
+This block of code can be copied and pasted into your Markdown file. It provides a brief introduction to services in Angular, including a link to the official documentation and examples of how to create and use services.
+
+## What are models and interfaces
+
+
+In TypeScript, interfaces and classes can both play the role of naming data types. They can be used to define the shape of an object or function.
+
+In Angular, models are typically used to define data structures for domain objects. Interfaces can be used to define contracts for complex objects, enforce that a class meets a contract, or just to have a type to work with that isn't tied to an implementation.
+
+### Basic Syntax
+
+Here's a basic example of a TypeScript interface:
+
+```typescript
+interface Person {
+  name: string;
+  age: number;
+}
+```
+
+In this example, `Person` is an interface that describes an object that has a `name` of type `string` and an `age` of type `number`.
+
+Here's a basic example of a TypeScript class (often used as a model in Angular):
+
+```typescript
+class Person {
+  constructor(public name: string, public age: number) {}
+}
+```
+
+In this example, `Person` is a class with a constructor that initializes `name` and `age`.
+
+### Using Models and Interfaces
+
+To use a model or interface, you would typically define a variable or function parameter with the type of the model or interface. Here's an example:
+
+```typescript
+let bob: Person = { name: 'Bob', age: 25 };
+```
+
+In this example, `bob` is a variable of type `Person`. The object assigned to `bob` must conform to the structure defined by the `Person` interface or class.
+
+Remember to check out the [TypeScript documentation](https://www.typescriptlang.org/docs/handbook/interfaces.html) and the [Angular Style Guide](https://angular.io/guide/styleguide#interfaces) for more information on using models and interfaces.
+
+## What are assets
+
+In an Angular project, the `assets` folder is a special directory where you can put static assets like images, icons, stylesheets, scripts, or any other static files that your application needs.
+
+These files are served directly by the web server and are not processed by Angular. This means that they retain their original file name and are not renamed or hashed like the rest of your Angular application files.
+
+You can reference these files in your application code using a relative path. For example, if you have an image called `logo.png` in your `assets` folder, you can display it in your Angular application like this:
+
+```html
+<img src="assets/logo.png" alt="Logo">
+```
+
+Remember to include the `assets` folder or any subdirectories in the `assets` array of the `angular.json` file so that they are included when the project is built:
+
+```json
+"assets": [
+  "src/favicon.ico",
+  "src/assets"
+],
+```
+
+This ensures that the static assets are copied to the distribution (`dist`) folder when you build your Angular application.
+
 
 [PREV: Getting Started](./docs/getting-started)
 

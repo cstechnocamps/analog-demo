@@ -175,3 +175,5 @@ Here's a sentence with a footnote. [^1]
 
 
 [PREV: How to Use this Site](./docs/how-to-use-this-site)
+
+[NEXT: Typescript Cheatsheet](./docs/typescript-cheatsheet)

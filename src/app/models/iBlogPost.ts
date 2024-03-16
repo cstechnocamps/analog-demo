@@ -8,4 +8,5 @@ export interface IBlogPost {
     authorRole: string;
     slug: string;
     description: string;
+    draft: boolean;
 }
